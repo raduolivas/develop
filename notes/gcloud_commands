@@ -1,0 +1,35 @@
+Yarn gulp build:
+yarn run gulp build --apiurl https://ltarley-dot-gweb-gfw-oort-dev.appspot.com --clientid 91996667519-th3i7o846tl6dbbvar28vg7mo0bqn905.apps.googleusercontent.com
+
+
+Cloud:	
+
+gcloud config set project [project_id]
+
+PUBSUB:
+Message will trigger all subscriptions
+gcloud pubsub subscriptions pull projects/gweb-gfw-oort-dev/subscriptions/rood
+
+Deploy functions:
+gcloud functions deploy helloPubSub --	runtime 	nodejs6 --trigger-topic rood
+
+Run Publish PubSub:
+gcloud pubsub topics publish rood --message "HELLO PUB-SUB I GOT YOU"
+
+Setup forecasted on rodolfosilva:
+(cd frontend; yarn; gulp  --fb-cred gs://gweb-gfw-oort-forecast-stage.appspot.com/firebase.json;   --apiurl "https://rodolfosilva-dot-gweb-gfw-oort-forecast-dev.appspot.com";   --budgeturl "https://gweb-gfw-oort-budget-dev.appspot.com";   --clientid "173110674489-ht37mjp2g6b44f7ss8pj04fl5jk8al0c.apps.googleusercontent.com")
+
+
+DEPLOY APP BACKEND:
+gcloud app deploy app.yaml --project gweb-gfw-oort-forecast-dev -v rodolfosilva
+gcloud app deploy --project gweb-gfw-oort-forecast-dev index.yaml app.yaml -v qa3 -q
+
+SIMPLE DEPLOY:
+python deploy.py [user] -y
+
+
+Run frontend server:
+gulp  --fb-cred gs://gweb-gfw-oort-forecast-dev.appspot.com/firebase.json --apiurl "https://${version}-dot-gweb-gfw-oort-forecast-dev.appspot.com" --budgeturl "https://develop-dot-gweb-gfw-oort-budget-dev.appspot.com" --clientid "173110674489-ht37mjp2g6b44f7ss8pj04fl5jk8al0c.apps.googleusercontent.com"
+
+
+

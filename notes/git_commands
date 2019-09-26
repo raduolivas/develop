@@ -1,0 +1,14 @@
+git checkout -b iss53
+git push origin <branch>
+
+Delete a branch :
+git branch -d <branch_name>
+
+
+
+
+List ssh-keys :
+ssh-add -<l> | <L>
+
+Remove all private keys:
+ssh-add -D
